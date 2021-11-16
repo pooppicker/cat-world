@@ -1,33 +1,41 @@
 <template>
   <div class="navbars">
     <header>
-      <router-link class="nav-title" to="/">
+      <router-link class="header-title" to="/">
         <h2>KitCat</h2>
       </router-link>
-      <input
-        class="navbar-toggle"
-        type="checkbox"
-        name="navbar-toggle"
-        id="navbar-toggle"
-      />
-      <nav class="nav">
-        <ul class="nav-list">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/explore">
-              <p>Explore</p>
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/favorite">
-              <p>Favorite</p>
-            </router-link>
-          </li>
-        </ul>
-      </nav>
-      <label for="navbar-toggle" class="navbar-toggle-label"
-        ><span class="hamburger"></span
-      ></label>
     </header>
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <img
+            class="nav-icon"
+            src="https://img.icons8.com/material-outlined/50/000000/home--v2.png"
+          />
+          <router-link class="nav-link" to="/">
+            <p>Explore</p>
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <img
+            class="nav-icon"
+            src="https://img.icons8.com/material-outlined/50/000000/like.png"
+          />
+          <router-link class="nav-link" to="/favorite">
+            <p>Favorite</p>
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <img
+            class="nav-icon"
+            src="https://img.icons8.com/material-outlined/24/000000/upload--v1.png"
+          />
+          <router-link class="nav-link" to="/upload">
+            <p>Upload</p>
+          </router-link>
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
 
@@ -39,77 +47,47 @@ header {
   z-index: 999;
   width: 100%;
   height: 60px;
-  text-align: center;
+  text-align: left;
   background: #fff;
-  box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.2);
-  // text-transform: uppercase;
-  .nav-title {
+  border-bottom: 1px solid rgb(231, 230, 230);
+  .header-title {
     color: $color_light_blue;
     line-height: 60px;
-  }
-
-  .nav {
-    position: absolute;
-    top: 100%;
-    width: 100%;
-    background: #fff;
-    transition: transform 0.2s ease-out;
-    transform-origin: top;
-    transform: scale(1, 0);
-    .nav-link {
-      color: $color_light_blue;
-      font-weight: 400;
+    h2 {
+      padding-left: 1rem;
     }
+  }
+}
+.nav {
+  position: fixed;
+  margin-bottom: 1rem;
+  bottom: 0;
+  width: 100%;
+  .nav-list {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 60px;
     .nav-item {
-      margin: 1.4rem 0;
-      opacity: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      // outline: 1px solid black;
+      color: $color_black;
+      font-weight: 400;
       cursor: pointer;
-    }
-  }
-  .navbar-toggle {
-    visibility: hidden;
-    position: absolute;
-    &:checked {
-      ~ {
-        .nav {
-          transform: scale(1, 1);
-          .nav-item {
-            opacity: 1;
-            transition: opacity 0.3s ease-out 0.3s;
-          }
-        }
+      .router-link-active {
+        border-bottom: 3px solid $color_yellow;
+      }
+      .nav-link {
+        color: $color_black;
+      }
+      .nav-icon {
+        width: 30px;
+        height: 30px;
       }
     }
-  }
-  .hamburger {
-    position: relative;
-    width: 30px;
-    height: 3px;
-    background: $color_light_blue;
-    &:before,
-    &:after {
-      position: absolute;
-      left: 0;
-      content: "";
-      width: 30px;
-      height: 3px;
-      background: $color_light_blue;
-    }
-    &:before {
-      bottom: 8px;
-    }
-    &:after {
-      top: 8px;
-    }
-  }
-  .navbar-toggle-label {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 7.5%;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
   }
 }
 </style>
