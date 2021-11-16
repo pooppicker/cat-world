@@ -8,29 +8,29 @@
     <nav class="nav">
       <ul class="nav-list">
         <li class="nav-item">
-          <img
-            class="nav-icon"
-            src="https://img.icons8.com/material-outlined/50/000000/home--v2.png"
-          />
           <router-link class="nav-link" to="/">
+            <img
+              class="nav-icon"
+              src="https://img.icons8.com/material-outlined/50/000000/home--v2.png"
+            />
             <p>Explore</p>
           </router-link>
         </li>
         <li class="nav-item">
-          <img
-            class="nav-icon"
-            src="https://img.icons8.com/material-outlined/50/000000/like.png"
-          />
           <router-link class="nav-link" to="/favorite">
-            <p>Favorite</p>
+            <img
+              class="nav-icon"
+              src="https://img.icons8.com/material-outlined/50/000000/like.png"
+            />
+            Favorite
           </router-link>
         </li>
         <li class="nav-item">
-          <img
-            class="nav-icon"
-            src="https://img.icons8.com/material-outlined/24/000000/upload--v1.png"
-          />
           <router-link class="nav-link" to="/upload">
+            <img
+              class="nav-icon"
+              src="https://img.icons8.com/material-outlined/24/000000/upload--v1.png"
+            />
             <p>Upload</p>
           </router-link>
         </li>
@@ -60,32 +60,38 @@ header {
 }
 .nav {
   position: fixed;
-  margin-bottom: 1rem;
+  padding-bottom: 1rem;
   bottom: 0;
   width: 100%;
+  // outline: 1px solid black;
   .nav-list {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 60px;
-    .nav-item {
+
+    .nav-item,
+    .nav-link {
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+    .nav-item {
       width: 100%;
-      // outline: 1px solid black;
       color: $color_black;
       font-weight: 400;
       cursor: pointer;
-      .router-link-active {
-        border-bottom: 3px solid $color_yellow;
-      }
       .nav-link {
         color: $color_black;
+        font-weight: 500;
       }
       .nav-icon {
+        margin-top: 0.3rem;
         width: 30px;
         height: 30px;
+      }
+      .router-link-exact-active {
+        border-top: 3px solid $color_dark_blue;
+        border-bottom: 3px solid transparent;
       }
     }
   }

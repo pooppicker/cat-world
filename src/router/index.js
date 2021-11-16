@@ -7,8 +7,18 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "",
     component: Home,
+  },
+  {
+    path: "/favorite",
+    name: "favorite",
+    component: () => import("../views/Favorite.vue"),
+  },
+  {
+    path: "/upload",
+    name: "upload",
+    component: () => import("../views/Upload.vue"),
   },
 ];
 
