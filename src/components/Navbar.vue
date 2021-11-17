@@ -11,7 +11,7 @@
           <router-link class="nav-link" to="/">
             <img
               class="nav-icon"
-              src="https://img.icons8.com/material-outlined/50/000000/home--v2.png"
+              src="https://img.icons8.com/material-outlined/50/19647e/home--v2.png"
             />
             <p>Explore</p>
           </router-link>
@@ -20,7 +20,7 @@
           <router-link class="nav-link" to="/favorite">
             <img
               class="nav-icon"
-              src="https://img.icons8.com/material-outlined/50/000000/like.png"
+              src="https://img.icons8.com/material-outlined/50/19647e/like.png"
             />
             <p>Favorite</p>
           </router-link>
@@ -29,7 +29,7 @@
           <router-link class="nav-link" to="/upload">
             <img
               class="nav-icon"
-              src="https://img.icons8.com/material-outlined/24/000000/upload--v1.png"
+              src="https://img.icons8.com/material-outlined/50/19647e/upload--v1.png"
             />
             <p>Upload</p>
           </router-link>
@@ -54,8 +54,10 @@
     height: 100%;
     padding: 0.5rem;
     text-align: center;
+    font-family: "Satisfy", cursive;
     .header-title {
-      color: $color_dark_blue;
+      padding: 0 1rem;
+      color: $color_yellow;
     }
   }
   .nav {
@@ -75,16 +77,15 @@
       }
       .nav-item {
         width: 100%;
-        color: $color_black;
         font-weight: 400;
         cursor: pointer;
         .router-link-exact-active {
-          border-top: 3px solid $color_dark_blue;
+          border-top: 3px solid $color_yellow;
           border-bottom: 3px solid transparent;
         }
         .nav-link {
-          color: $color_black;
-          font-weight: 500;
+          color: $color_dark_blue;
+          font-weight: 400;
         }
         .nav-icon {
           margin-top: 0.3rem;
@@ -106,6 +107,7 @@
       justify-content: center;
       align-items: center;
       grid-column: 2/3;
+      font-family: "Satisfy", cursive;
     }
     .nav {
       all: unset;
