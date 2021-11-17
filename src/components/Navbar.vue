@@ -109,9 +109,6 @@
       justify-content: center;
       align-items: center;
       grid-column: 2/3;
-      .header-title {
-        // font-size: 2rem;
-      }
     }
     .nav {
       all: unset;
@@ -129,14 +126,14 @@
             font-size: 1.1em;
             &:hover,
             .router-link-exact-active {
-              color: #92bfb1;
+              color: $color_light_blue;
             }
           }
           img {
             display: none;
           }
           .router-link-exact-active {
-            color: #92bfb1;
+            color: $color_light_blue;
           }
         }
       }
