@@ -28,35 +28,44 @@
 <style lang="scss">
 @import "../assets/scss/colorAndSize.scss";
 
+// ------ Main ------
 .search-bar {
   // outline: 1px solid black;
   padding-top: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-
   .search-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    // outline: 1px solid black;
-    border: 2px solid rgb(207, 206, 206);
+    border: 2px solid rgb(223, 221, 221);
     border-radius: 50px;
+    padding: 0 5px;
     width: 300px;
     .search-input {
       width: 100%;
       padding: 0.5rem;
       font-size: 1rem;
+      color: rgb(134, 133, 133);
       background: transparent;
+    }
+    .btn-search {
+      border-left: 2px solid rgb(223, 221, 221);
+      img {
+        width: 20px;
+        height: 20px;
+      }
     }
   }
 }
-.search {
-  img {
-    width: 20px;
-    height: 20px;
-    font-weight: 900;
+
+// ------ Large Screen ------
+@media screen and (min-width: 768px) {
+  .search-bar {
+    .search-container {
+      width: 420px;
+    }
   }
 }
 </style>
