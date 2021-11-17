@@ -1,10 +1,10 @@
 <template>
   <div class="navbars">
-    <header>
-      <router-link class="header-title" to="/">
-        <h2>KitCat</h2>
+    <div class="header">
+      <router-link to="/">
+        <h1 class="header-title">KitCat</h1>
       </router-link>
-    </header>
+    </div>
     <nav class="nav">
       <ul class="nav-list">
         <li class="nav-item">
@@ -22,7 +22,7 @@
               class="nav-icon"
               src="https://img.icons8.com/material-outlined/50/000000/like.png"
             />
-            Favorite
+            <p>Favorite</p>
           </router-link>
         </li>
         <li class="nav-item">
@@ -42,56 +42,103 @@
 <style lang="scss" scoped>
 @import "../assets/scss/colorAndSize.scss";
 // @import "../assets/scss/reset.scss";
-header {
+.navbars {
+  // outline: 1px solid black;
   position: fixed;
   z-index: 999;
   width: 100%;
   height: 60px;
-  text-align: left;
-  background: #fff;
   border-bottom: 1px solid rgb(231, 230, 230);
-  .header-title {
-    color: $color_light_blue;
-    line-height: 60px;
-    h2 {
-      padding-left: 1rem;
+  .header {
+    // outline: 1px solid black;
+    width: 20%;
+    height: 100%;
+    padding: 0.5rem;
+    text-align: center;
+    .header-title {
+      color: $color_dark_blue;
+      // font-size: 1.5rem;
+    }
+  }
+  .nav {
+    position: fixed;
+    padding-bottom: 1rem;
+    bottom: 0;
+    width: 100%;
+    // outline: 1px solid black;
+    .nav-list {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+
+      .nav-item,
+      .nav-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .nav-item {
+        width: 100%;
+        color: $color_black;
+        font-weight: 400;
+        cursor: pointer;
+        .router-link-exact-active {
+          border-top: 3px solid $color_dark_blue;
+          border-bottom: 3px solid transparent;
+        }
+        .nav-link {
+          color: $color_black;
+          font-weight: 500;
+        }
+        .nav-icon {
+          margin-top: 0.3rem;
+          width: 30px;
+          height: 30px;
+        }
+      }
     }
   }
 }
-.nav {
-  position: fixed;
-  padding-bottom: 1rem;
-  bottom: 0;
-  width: 100%;
-  // outline: 1px solid black;
-  .nav-list {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-
-    .nav-item,
-    .nav-link {
+@media screen and (min-width: 768px) {
+  .navbars {
+    display: grid;
+    grid-template-columns: 1fr auto minmax(300px, 3fr) 1fr;
+    .header {
+      all: unset;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
+      grid-column: 2/3;
+      .header-title {
+        // font-size: 2rem;
+      }
     }
-    .nav-item {
-      width: 100%;
-      color: $color_black;
-      font-weight: 400;
-      cursor: pointer;
-      .nav-link {
-        color: $color_black;
-        font-weight: 500;
-      }
-      .nav-icon {
-        margin-top: 0.3rem;
-        width: 30px;
-        height: 30px;
-      }
-      .router-link-exact-active {
-        border-top: 3px solid $color_dark_blue;
-        border-bottom: 3px solid transparent;
+    .nav {
+      all: unset;
+      grid-column: 3/4;
+      .nav-list {
+        height: 100%;
+        display: grid;
+        grid-auto-flow: column;
+        align-items: center;
+        justify-content: end;
+        grid-gap: 2rem;
+        .nav-item {
+          .nav-link {
+            border: none;
+            font-size: 1.1em;
+            &:hover,
+            .router-link-exact-active {
+              color: #92bfb1;
+            }
+          }
+          img {
+            display: none;
+          }
+          .router-link-exact-active {
+            color: #92bfb1;
+          }
+        }
       }
     }
   }
