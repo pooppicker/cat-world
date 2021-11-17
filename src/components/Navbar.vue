@@ -39,25 +39,23 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "../assets/scss/colorAndSize.scss";
-// @import "../assets/scss/reset.scss";
+
+// ------ Main ------
 .navbars {
-  // outline: 1px solid black;
   position: fixed;
   z-index: 999;
   width: 100%;
   height: 60px;
   border-bottom: 1px solid rgb(231, 230, 230);
   .header {
-    // outline: 1px solid black;
     width: 20%;
     height: 100%;
     padding: 0.5rem;
     text-align: center;
     .header-title {
       color: $color_dark_blue;
-      // font-size: 1.5rem;
     }
   }
   .nav {
@@ -65,12 +63,10 @@
     padding-bottom: 1rem;
     bottom: 0;
     width: 100%;
-    // outline: 1px solid black;
     .nav-list {
       display: flex;
       justify-content: space-evenly;
       align-items: center;
-
       .nav-item,
       .nav-link {
         display: flex;
@@ -99,6 +95,7 @@
     }
   }
 }
+// ------ Large Screen ------
 @media screen and (min-width: 768px) {
   .navbars {
     display: grid;
