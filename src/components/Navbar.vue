@@ -49,6 +49,7 @@
   width: 100%;
   height: 60px;
   border-bottom: 1px solid rgb(231, 230, 230);
+  background-color: rgb(253, 250, 250);
   .header {
     width: 20%;
     height: 100%;
@@ -62,13 +63,15 @@
   }
   .nav {
     position: fixed;
-    padding-bottom: 1rem;
+    // padding-bottom: 1rem;
     bottom: 0;
     width: 100%;
     .nav-list {
       display: flex;
       justify-content: space-evenly;
       align-items: center;
+      padding-bottom: 1rem;
+      background-color: rgb(253, 250, 250);
       .nav-item,
       .nav-link {
         display: flex;
@@ -101,6 +104,7 @@
   .navbars {
     display: grid;
     grid-template-columns: 1fr auto minmax(300px, 3fr) 1fr;
+    background-color: rgb(253, 250, 250);
     .header {
       all: unset;
       display: flex;
@@ -116,7 +120,7 @@
         height: 100%;
         display: grid;
         grid-auto-flow: column;
-        align-items: center;
+        align-items: end;
         justify-content: end;
         grid-gap: 2rem;
         .nav-item {

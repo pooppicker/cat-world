@@ -22,15 +22,92 @@
       </form>
     </div>
     <!-- Home/Explore Page content -->
+    <div class="explore-card">
+      <div class="card">
+        <div class="card-container">
+          <img src="https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg" alt="" />
+          <div class="add-fav">
+            <button class="btn-like">
+              <img
+                src="https://img.icons8.com/material-outlined/48/c81d25/like--v1.png"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-container">
+          <img src="https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg" alt="" />
+          <div class="add-fav">
+            <button class="btn-like">
+              <img
+                src="https://img.icons8.com/material-outlined/48/c81d25/like--v1.png"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-container">
+          <img src="https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg" alt="" />
+          <div class="add-fav">
+            <button class="btn-like">
+              <img
+                src="https://img.icons8.com/material-outlined/48/c81d25/like--v1.png"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-container">
+          <img src="https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg" alt="" />
+          <div class="add-fav">
+            <button class="btn-like">
+              <img
+                src="https://img.icons8.com/material-outlined/48/c81d25/like--v1.png"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-container">
+          <img src="https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg" alt="" />
+          <div class="add-fav">
+            <button class="btn-like">
+              <img
+                src="https://img.icons8.com/material-outlined/48/c81d25/like--v1.png"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-container">
+          <img src="https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg" alt="" />
+          <div class="add-fav">
+            <button class="btn-like">
+              <img
+                src="https://img.icons8.com/material-outlined/48/c81d25/like--v1.png"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <style lang="scss">
 @import "../assets/scss/colorAndSize.scss";
-
+.home {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(219, 217, 217, 0.2);
+}
 // ------ Main ------
 .search-bar {
-  // outline: 1px solid black;
   padding-top: 5rem;
   display: flex;
   align-items: center;
@@ -59,13 +136,76 @@
     }
   }
 }
-
+.explore-card {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-bottom: 6rem; // prevent navbar blocking the last content
+}
+.card {
+  margin-bottom: 3rem;
+  width: 299px;
+  height: 100%;
+  outline: 2px solid rgb(223, 221, 221);
+  border-radius: 10px;
+  .card-container {
+    img {
+      flex-shrink: 0;
+      object-fit: cover;
+      width: 100%;
+      border-radius: 8px 8px 0 0;
+      cursor: pointer;
+    }
+    .add-fav {
+      padding: 0.8rem 0;
+      width: 100%;
+      text-align: center;
+      .btn-like {
+        img {
+          width: 28px;
+          height: 28px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+// ------ Medium Screen ------
+@media screen and (min-width: 600px) {
+  .explore-card {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(3, 1fr);
+    justify-content: center;
+    grid-gap: 2rem;
+    padding-bottom: 0; // change it back when full screen
+  }
+  .card {
+    margin-bottom: 0;
+    width: 250px;
+    height: 350px;
+  }
+}
 // ------ Large Screen ------
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 820px) {
   .search-bar {
     .search-container {
       width: 420px;
     }
+  }
+  .explore-card {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(2, 1fr);
+    justify-content: center;
+    grid-gap: 3rem;
+    padding-bottom: 0; // change it back when full screen
+  }
+  .card {
+    width: 252px;
+    height: 350px;
   }
 }
 </style>
