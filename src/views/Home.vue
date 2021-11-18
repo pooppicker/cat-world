@@ -25,7 +25,11 @@
     <div class="explore-card">
       <div class="card">
         <div class="card-container">
-          <img src="https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg" alt="" />
+          <img
+            class="card-image"
+            src="https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg"
+            alt=""
+          />
           <div class="add-fav">
             <button class="btn-like">
               <img
@@ -37,7 +41,11 @@
       </div>
       <div class="card">
         <div class="card-container">
-          <img src="https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg" alt="" />
+          <img
+            class="card-image"
+            src="https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg"
+            alt=""
+          />
           <div class="add-fav">
             <button class="btn-like">
               <img
@@ -49,7 +57,11 @@
       </div>
       <div class="card">
         <div class="card-container">
-          <img src="https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg" alt="" />
+          <img
+            class="card-image"
+            src="https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg"
+            alt=""
+          />
           <div class="add-fav">
             <button class="btn-like">
               <img
@@ -61,7 +73,11 @@
       </div>
       <div class="card">
         <div class="card-container">
-          <img src="https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg" alt="" />
+          <img
+            class="card-image"
+            src="https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg"
+            alt=""
+          />
           <div class="add-fav">
             <button class="btn-like">
               <img
@@ -73,7 +89,11 @@
       </div>
       <div class="card">
         <div class="card-container">
-          <img src="https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg" alt="" />
+          <img
+            class="card-image"
+            src="https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg"
+            alt=""
+          />
           <div class="add-fav">
             <button class="btn-like">
               <img
@@ -85,7 +105,11 @@
       </div>
       <div class="card">
         <div class="card-container">
-          <img src="https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg" alt="" />
+          <img
+            class="card-image"
+            src="https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg"
+            alt=""
+          />
           <div class="add-fav">
             <button class="btn-like">
               <img
@@ -146,16 +170,15 @@
 }
 .card {
   margin-bottom: 3rem;
-  width: 299px;
+  width: 300px;
   height: 100%;
   outline: 2px solid rgb(223, 221, 221);
   border-radius: 10px;
   .card-container {
-    img {
-      flex-shrink: 0;
-      object-fit: cover;
+    .card-image {
+      object-fit: contain;
       width: 100%;
-      border-radius: 8px 8px 0 0;
+      border-radius: 11px 11px 0 0;
       cursor: pointer;
     }
     .add-fav {
