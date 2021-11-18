@@ -24,19 +24,22 @@
     <!-- Home/Explore Page content -->
     <div class="explore-card">
       <div v-for="breed in breeds" :key="breed.id" class="card">
-        <div class="card-container">
-          <h4 class="card-title">{{ breed.name }}</h4>
-          <img class="card-image" :src="breed.image.url" alt="" />
-          <!-- <div class="add-fav">
+        <router-link :to="{ name: 'Info', params: { id: breed.id } }">
+          <div class="card-container">
+            <h4 class="card-title">{{ breed.name }}</h4>
+            <img class="card-image" :src="breed.image.url" alt="" />
+            <!-- <div class="add-fav">
             <button class="btn-like">
               <img
                 src="https://img.icons8.com/material-outlined/48/c81d25/like--v1.png"
               />
             </button>
           </div> -->
-        </div>
+          </div>
+        </router-link>
       </div>
     </div>
+    <!-- Paginator -->
   </div>
 </template>
 
@@ -72,9 +75,7 @@ export default {
 @import "../assets/scss/colorAndSize.scss";
 .home {
   height: 100%;
-  width: calc(100% + 10px);
-
-  // background-color: rgba(219, 217, 217, 0.2);
+  width: 100%;
 }
 // ------ Main ------
 .search-bar {
@@ -121,6 +122,7 @@ export default {
     background-color: transparent;
     overflow: hidden;
     .card-container {
+      // outline: 1px solid black;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -129,6 +131,7 @@ export default {
       height: 250px;
       cursor: pointer;
       .card-image {
+        outline: 1px solid black;
         object-fit: cover;
       }
       .card-title {
