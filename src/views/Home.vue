@@ -28,13 +28,6 @@
           <div class="card-container">
             <h4 class="card-title">{{ breed.name }}</h4>
             <img class="card-image" :src="breed.image.url" alt="" />
-            <!-- <div class="add-fav">
-            <button class="btn-like">
-              <img
-                src="https://img.icons8.com/material-outlined/48/c81d25/like--v1.png"
-              />
-            </button>
-          </div> -->
           </div>
         </router-link>
       </div>
