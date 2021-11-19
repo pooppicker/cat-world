@@ -9,29 +9,33 @@
       <h4 class="breed-title">Abyssinian</h4>
     </div>
     <div class="breed-container">
-      <img
-        class="breed-image"
-        src="https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg"
-        alt=""
-      />
-      <div class="add-fav">
-        <button class="btn-like">
-          <div v-if="false">
-            <img
-              src="https://img.icons8.com/material-outlined/48/000/like--v1.png"
-            />
-          </div>
-          <div v-else>
-            <img
-              src="https://img.icons8.com/material-rounded/48/f02d3a/like--v1.png"
-            />
-          </div>
-        </button>
-        <a href="https://en.wikipedia.org/wiki/Abyssinian_(cat)" target="_blank"
-          ><img
-            class="icon-wiki"
-            src="https://img.icons8.com/ios/50/000000/wikipedia.png"
-        /></a>
+      <div class="breed-wrapper">
+        <img
+          class="breed-image"
+          src="https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg"
+          alt=""
+        />
+        <div class="add-fav">
+          <button class="btn-like">
+            <div v-if="false">
+              <img
+                src="https://img.icons8.com/material-outlined/48/000/like--v1.png"
+              />
+            </div>
+            <div v-else>
+              <img
+                src="https://img.icons8.com/material-rounded/48/f02d3a/like--v1.png"
+              />
+            </div>
+          </button>
+          <a
+            href="https://en.wikipedia.org/wiki/Abyssinian_(cat)"
+            target="_blank"
+            ><img
+              class="icon-wiki"
+              src="https://img.icons8.com/ios/50/000000/wikipedia.png"
+          /></a>
+        </div>
       </div>
       <div class="txt-area">
         <ul>
@@ -85,28 +89,66 @@
 }
 .breed-container {
   // outline: 1px solid black;
-  .add-fav {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-    height: 50px;
-    .btn-like {
-      img {
+  display: flex;
+  flex-flow: column wrap;
+  width: 100%;
+  height: 100%;
+  .breed-wrapper {
+    .add-fav {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 100%;
+      height: 50px;
+      .btn-like {
+        img {
+          width: 30px;
+          height: 30px;
+        }
+      }
+      .icon-wiki {
         width: 30px;
         height: 30px;
       }
     }
-    .icon-wiki {
-      width: 30px;
-      height: 30px;
-    }
   }
   .txt-area {
     // outline: 1px solid black;
+    width: 100%;
     padding: 1rem;
     line-height: 1.9;
     color: $color_black;
   }
+}
+
+// large Size
+
+@media Screen and (min-width: 620px) {
+  .breed-info {
+    .breed-header {
+      // outline: 3px solid black;
+      display: flex;
+      justify-content: center;
+      width: 60%;
+    }
+  }
+  .breed-container {
+    .breed-wrapper {
+      display: flex;
+      flex-flow: column wrap;
+      align-items: center;
+      justify-content: center;
+      .breed-image {
+        width: 60%;
+      }
+    }
+    .txt-area {
+      width: 60%;
+      margin-left: 18%;
+      line-height: 2;
+    }
+  }
+}
+@media Screen and (min-width: 820px) {
 }
 </style>
