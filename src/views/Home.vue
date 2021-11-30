@@ -86,7 +86,7 @@ export default {
 }
 // ------ Main ------
 .search-bar {
-  padding-top: 5rem;
+  padding-top: 6rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -154,7 +154,11 @@ export default {
 
 // ------ Medium Screen ------
 @media screen and (min-width: 700px) {
+  .home {
+    padding-bottom: 6rem;
+  }
   .explore-card {
+    padding-top: 3rem;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
