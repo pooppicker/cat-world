@@ -45,7 +45,7 @@
 // ------ Main ------
 .navbars {
   position: fixed;
-  z-index: 999;
+  z-index: 99;
   width: 100%;
   height: 60px;
   border-bottom: 1px solid rgb(231, 230, 230);
