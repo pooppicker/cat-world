@@ -21,6 +21,7 @@
             src="https://cdn2.thecatapi.com/images/5AdhMjeEu.jpg"
             alt=""
           />
+
           <div class="add-fav">
             <button class="btn-like">
               <div v-if="false">
@@ -42,6 +43,7 @@
                 src="https://img.icons8.com/ios/50/000000/wikipedia.png"
             /></a>
           </div>
+
           <div class="txt-area">
             <ul>
               <li><strong>Origin: </strong> Egypt</li>
@@ -184,11 +186,9 @@ export default {
     width: 600px;
   }
   .breed-header {
-    // outline: 1px solid black;
     padding-left: 5.5rem;
   }
   .breed-wrapper {
-    // outline: 1px solid black;
     display: flex;
     flex-flow: column wrap;
     align-items: center;
@@ -206,32 +206,25 @@ export default {
   }
 }
 // Large Sreen
-// @media Screen and (min-width: 820px) {
-//   .breed-info {
-//     display: flex;
-//     flex-direction: row;
-//     align-items: center;
-//     justify-content: center;
-//     padding-bottom: 0;
-//   }
-//   .breed-container {
-//     padding: 0 5rem;
-//     min-width: 600px;
-//     .breed-wrapper {
-//       .breed-image {
-//         width: 480px;
-//       }
-//     }
-//   }
-//   .txt-area {
-//     min-width: 700px;
-//     line-height: 2;
-//     padding-left: 2rem;
-//     li {
-//       font-size: 20px;
-//     }
-//   }
-// }
+@media Screen and (min-width: 820px) {
+  .modal {
+    width: 800px;
+  }
+  .breed-header {
+    padding-left: 7rem;
+  }
+  .breed-wrapper {
+    .breed-image {
+      width: 500px;
+    }
+    .add-fav {
+      justify-content: space-evenly;
+    }
+    .txt-area {
+      padding: 0 7rem 0 9.5rem;
+    }
+  }
+}
 @keyframes scale-in {
   from {
     transform: scale(0.9);
