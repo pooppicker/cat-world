@@ -11,6 +11,11 @@ const routes = [
     component: Home,
   },
   {
+    path: "/breed-info/:id",
+    name: "breed-info",
+    component: () => import("../components/BreedInfo.vue"),
+  },
+  {
     path: "/favorite",
     name: "favorite",
     component: () => import("../views/Favorite.vue"),

@@ -3,7 +3,7 @@
     <div class="modal-container">
       <div class="modal">
         <div class="breed-header">
-          <div @click="onClose" class="icon-back">
+          <div @click="previousPage" class="icon-back">
             <img
               src="https://img.icons8.com/material-outlined/48/000000/long-arrow-left.png"
             />
@@ -13,7 +13,7 @@
             src="https://cdn2.thecatapi.com/images/5AdhMjeEu.jpg"
             alt=""
           />
-          <h4 class="breed-title">Abyssinian</h4>
+          <h4 class="breed-title">okok</h4>
         </div>
         <div class="breed-wrapper">
           <img
@@ -71,27 +71,15 @@
 </template>
 
 <script>
-import BreedsApi from "../assets/apis/breeds";
-
 export default {
-  props: {
-    onClose: {
-      type: Function,
-      required: true,
-    },
-  },
-  created() {
-    const { id } = this.$route.params;
-    this.fetchBreed(id);
+  data() {
+    return {
+      breed: [],
+    };
   },
   methods: {
-    async fetchBreed(breedId) {
-      try {
-        const response = await BreedsApi.getBreed({ breedId });
-        console.log(response.data);
-      } catch (error) {
-        console.log(error);
-      }
+    previousPage() {
+      this.$router.back();
     },
   },
 };

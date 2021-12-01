@@ -25,16 +25,16 @@
     <div class="explore-card">
       <div v-for="breed in breeds" :key="breed.id" class="card">
         <div @click="handleOpenModal" class="card-container">
-          <h4 class="card-title">{{ breed.name }}</h4>
-          <img class="card-image" :src="breed.image.url" alt="" />
+          <router-link :to="{ name: 'breed-info', params: { id: breed.id } }">
+            <h4 class="card-title">{{ breed.name }}</h4>
+            <img class="card-image" :src="breed.image.url" alt="" />
+          </router-link>
         </div>
       </div>
     </div>
-    <BreedInfo
-      v-if="openModal"
-      :onClose="handleCloseModal"
-      @closeModal="handleCloseModal"
-    />
+
+    <BreedInfo v-if="openModal" />
+
     <!-- Paginator -->
   </div>
 </template>
@@ -60,19 +60,16 @@ export default {
     async fetchBreeds() {
       try {
         const response = await BreedsAPI.getBreeds();
-        console.log(response.data);
-        this.breeds = {
-          ...response.data,
-        };
+        this.breeds = response.data.map((breed) => ({
+          ...breed,
+        }));
+        console.log(this.breeds);
       } catch (error) {
         console.log(error);
       }
     },
     handleOpenModal() {
       this.openModal = true;
-    },
-    handleCloseModal() {
-      this.openModal = false;
     },
   },
 };
@@ -129,7 +126,7 @@ export default {
     background-color: transparent;
     overflow: hidden;
     .card-container {
-      // outline: 1px solid black;
+      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -138,13 +135,17 @@ export default {
       height: 250px;
       cursor: pointer;
       .card-image {
-        outline: 1px solid black;
+        width: 250px;
+        height: 250px;
         object-fit: cover;
       }
       .card-title {
         text-align: center;
         position: absolute;
         padding: 0.5rem;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
         color: $color_black;
         background-color: rgba(240, 236, 236, 0.5);
       }

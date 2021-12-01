@@ -4,7 +4,7 @@ export default {
   getBreeds() {
     return apiHelper.get("/breeds?limit=12&page=0");
   },
-  getBreed({ breedId }) {
-    return apiHelper.get(`/breeds/${breedId}`);
-  },
+  // getBreed({ breedId }) {
+  //   return apiHelper.get(`/breeds/${breedId}`);
+  // },
 };
