@@ -21,6 +21,7 @@
         </div>
       </form>
     </div>
+    <Spinner v-if="isProcessing" />
     <!-- Home/Explore Page content -->
     <div class="explore-card">
       <div v-for="breed in breeds" :key="breed.id" class="card">
@@ -39,12 +40,16 @@
 
 <script>
 import BreedsAPI from "../assets/apis/breeds";
-
+import Spinner from "../components/Spinner.vue";
 export default {
+  components: {
+    Spinner,
+  },
   data() {
     return {
       breeds: [],
       openModal: false,
+      isProcessing: true,
     };
   },
   created() {
@@ -57,6 +62,7 @@ export default {
         this.breeds = response.data.map((breed) => ({
           ...breed,
         }));
+        this.isProcessing = false;
         console.log(this.breeds);
       } catch (error) {
         console.log(error);

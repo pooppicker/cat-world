@@ -1,6 +1,7 @@
 <template>
   <div class="modal-overlay">
-    <div class="modal-container">
+    <Spinner v-if="isProcessing" />
+    <div v-else class="modal-container">
       <div class="modal">
         <div class="breed-header">
           <div @click="previousPage" class="icon-back">
@@ -16,7 +17,11 @@
           <h4 class="breed-title">{{ breed.name }}</h4>
         </div>
         <div class="breed-wrapper">
-          <img class="breed-image" :src="breed.reference_image_id" alt="" />
+          <img
+            class="breed-image"
+            :src="breed.reference_image_id"
+            alt="cannot load pic"
+          />
 
           <div class="add-fav">
             <button class="btn-like">
@@ -64,8 +69,11 @@
 
 <script>
 import BreedsAPI from "../assets/apis/breeds";
-
+import Spinner from "./Spinner.vue";
 export default {
+  components: {
+    Spinner,
+  },
   data() {
     return {
       breed: {
@@ -80,6 +88,7 @@ export default {
         wikipedia_url: "",
         reference_image_id: "",
       },
+      isProcessing: true,
     };
   },
   created() {
@@ -117,8 +126,9 @@ export default {
           wikipedia_url,
           reference_image_id: IMG_URL + reference_image_id + JPG,
         };
+        this.isProcessing = false;
       } catch (error) {
-        console.log(error);
+        console.log(error.message);
       }
     },
     previousPage() {
@@ -187,6 +197,9 @@ export default {
   align-items: center;
   .breed-image {
     width: 300px;
+    max-height: 300px;
+    object-position: top;
+    object-fit: cover;
   }
   .add-fav {
     display: flex;
