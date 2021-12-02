@@ -24,7 +24,7 @@
     <!-- Home/Explore Page content -->
     <div class="explore-card">
       <div v-for="breed in breeds" :key="breed.id" class="card">
-        <div @click="handleOpenModal" class="card-container">
+        <div class="card-container">
           <router-link :to="{ name: 'breed-info', params: { id: breed.id } }">
             <h4 class="card-title">{{ breed.name }}</h4>
             <img class="card-image" :src="breed.image.url" alt="" />
@@ -33,20 +33,14 @@
       </div>
     </div>
 
-    <BreedInfo v-if="openModal" />
-
     <!-- Paginator -->
   </div>
 </template>
 
 <script>
 import BreedsAPI from "../assets/apis/breeds";
-import BreedInfo from "../components/BreedInfo.vue";
 
 export default {
-  components: {
-    BreedInfo,
-  },
   data() {
     return {
       breeds: [],
@@ -67,9 +61,6 @@ export default {
       } catch (error) {
         console.log(error);
       }
-    },
-    handleOpenModal() {
-      this.openModal = true;
     },
   },
 };

@@ -10,17 +10,13 @@
           </div>
           <img
             class="breed-header-image"
-            src="https://cdn2.thecatapi.com/images/5AdhMjeEu.jpg"
+            :src="breed.reference_image_id"
             alt=""
           />
-          <h4 class="breed-title">okok</h4>
+          <h4 class="breed-title">{{ breed.name }}</h4>
         </div>
         <div class="breed-wrapper">
-          <img
-            class="breed-image"
-            src="https://cdn2.thecatapi.com/images/5AdhMjeEu.jpg"
-            alt=""
-          />
+          <img class="breed-image" :src="breed.reference_image_id" alt="" />
 
           <div class="add-fav">
             <button class="btn-like">
@@ -35,9 +31,7 @@
                 />
               </div>
             </button>
-            <a
-              href="https://en.wikipedia.org/wiki/Abyssinian_(cat)"
-              target="_blank"
+            <a :href="breed.wikipedia_url" target="_blank"
               ><img
                 class="icon-wiki"
                 src="https://img.icons8.com/ios/50/000000/wikipedia.png"
@@ -46,20 +40,18 @@
 
           <div class="txt-area">
             <ul>
-              <li><strong>Origin: </strong> Egypt</li>
-              <li><strong>Life span: </strong> 14 - 15</li>
-              <li><strong>Short legs: </strong> No</li>
-              <li><strong>Stranger friendly: </strong> Yes</li>
+              <li><strong>Origin: </strong>{{ breed.origin }}</li>
+              <li><strong>Life span: </strong>{{ breed.life_span }}</li>
+              <li><strong>Short legs: </strong>{{ breed.short_legs }}</li>
               <li>
-                <strong>Temperament: </strong> Active, Energetic, Independent,
-                Intelligent, Gentle
+                <strong>Stranger friendly: </strong
+                >{{ breed.stranger_friendly }}
               </li>
+              <li><strong>Temperament: </strong> {{ breed.temperament }}</li>
               <li>
-                <strong>Description:</strong>
+                <strong>Description: </strong>
                 <p class="description">
-                  The Abyssinian is easy to care for, and a joy to have in your
-                  home. They’re affectionate cats and love both people and other
-                  animals.
+                  {{ breed.description }}
                 </p>
               </li>
             </ul>
@@ -71,13 +63,64 @@
 </template>
 
 <script>
+import BreedsAPI from "../assets/apis/breeds";
+
 export default {
   data() {
     return {
-      breed: [],
+      breed: {
+        id: "",
+        name: "",
+        origin: "",
+        life_span: "",
+        short_legs: 0,
+        stranger_friendly: 1,
+        temperament: "",
+        description: "",
+        wikipedia_url: "",
+        reference_image_id: "",
+      },
     };
   },
+  created() {
+    const { id } = this.$route.params;
+    this.fetchBreed(id);
+  },
   methods: {
+    async fetchBreed(breedId) {
+      const IMG_URL = "https://cdn2.thecatapi.com/images/";
+      const JPG = ".jpg";
+      try {
+        const response = await BreedsAPI.getBreed({ breedId });
+        const {
+          id,
+          name,
+          origin,
+          life_span,
+          short_legs,
+          stranger_friendly,
+          temperament,
+          description,
+          wikipedia_url,
+          reference_image_id,
+        } = response.data;
+        this.breed = {
+          ...response.data,
+          id,
+          name,
+          origin,
+          life_span,
+          short_legs: short_legs === 0 ? "No" : "Yes",
+          stranger_friendly,
+          temperament,
+          description,
+          wikipedia_url,
+          reference_image_id: IMG_URL + reference_image_id + JPG,
+        };
+      } catch (error) {
+        console.log(error);
+      }
+    },
     previousPage() {
       this.$router.back();
     },
