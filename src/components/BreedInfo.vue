@@ -133,7 +133,7 @@ export default {
       }
     },
     previousPage() {
-      this.$router.push("/");
+      this.$router.back();
     },
   },
 };

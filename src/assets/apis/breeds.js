@@ -1,8 +1,7 @@
 import { apiHelper } from "../../utils/helpers";
-
 export default {
-  getBreeds() {
-    return apiHelper.get("/breeds?limit=10&page=0");
+  getBreeds({ limit, page }) {
+    return apiHelper.get(`/breeds?limit=${limit}&page=${page}`);
   },
   getBreed({ breedId }) {
     return apiHelper.get(`/breeds/${breedId}`);

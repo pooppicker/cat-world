@@ -28,7 +28,7 @@
         <div class="card-container">
           <router-link :to="{ name: 'breed-info', params: { id: breed.id } }">
             <h4 class="card-title">{{ breed.name }}</h4>
-            <img class="card-image" :src="breed.image.url" alt="" />
+            <img class="card-image" :src="breed.reference_image_id" alt="" />
           </router-link>
         </div>
       </div>
@@ -37,11 +37,11 @@
     <!-- Paginator -->
     <div class="pagination">
       <ul class="paginator">
-        <li class="page-tab">&laquo;</li>
-        <li class="page-tab">1</li>
-        <li class="page-tab">2</li>
-        <li class="page-tab">3</li>
-        <li class="page-tab">&raquo;</li>
+        <li v-if="page > 1" @click="prevBtn" class="page-tab">&laquo;</li>
+        <template v-for="n in getNumPages">
+          <li :key="n.index" class="page-tab">{{ n }}</li>
+        </template>
+        <li @click="nextBtn" class="page-tab">&raquo;</li>
       </ul>
     </div>
   </div>
@@ -56,28 +56,68 @@ export default {
   },
   data() {
     return {
-      breeds: [],
-      openModal: false,
+      breeds: {
+        name: "",
+        reference_image_id: "",
+      },
       isProcessing: true,
+      page: 1,
+      limit: 10,
+      pagination_count: 0,
     };
   },
   created() {
-    this.fetchBreeds();
+    this.fetchBreeds(this.limit, this.page);
   },
   methods: {
-    async fetchBreeds() {
+    async fetchBreeds(limit, page) {
       try {
-        const response = await BreedsAPI.getBreeds();
+        const IMG_URL = "https://cdn2.thecatapi.com/images/";
+        const JPG = ".jpg";
+        limit = this.limit;
+        page = this.page - 1;
+        this.isProcessing = true;
+        const response = await BreedsAPI.getBreeds({ limit, page });
+        this.pagination_count = response.headers["pagination-count"];
         this.breeds = response.data.map((breed) => ({
           ...breed,
+          name: breed.name,
+          reference_image_id: IMG_URL + breed.reference_image_id + JPG,
         }));
+
         this.isProcessing = false;
         console.log(this.breeds);
       } catch (error) {
         console.log(error);
+        this.isProcessing = false;
       }
     },
+    async prevBtn() {
+      this.page--;
+      await this.fetchBreeds();
+    },
+    async nextBtn() {
+      this.page++;
+      await this.fetchBreeds();
+    },
   },
+  computed: {
+    getNumPages: function () {
+      return Math.floor(this.pagination_count / this.limit) | 0;
+    },
+  },
+  // watch: {
+  //   page: {
+  //     handler: function() {
+  //       if (this.page) {
+  //         limit= this.limit
+  //         page = this.page
+  //         this.fetchBreeds(limit, page)
+  //       }
+  //     },
+  //   },
+  //   deep: true,
+  // },
 };
 </script>
 
