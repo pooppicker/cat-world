@@ -35,6 +35,15 @@
     </div>
 
     <!-- Paginator -->
+    <div class="pagination">
+      <ul class="paginator">
+        <li class="page-tab">&laquo;</li>
+        <li class="page-tab">1</li>
+        <li class="page-tab">2</li>
+        <li class="page-tab">3</li>
+        <li class="page-tab">&raquo;</li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -116,7 +125,6 @@ export default {
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  padding-bottom: 6rem; // prevent navbar blocking the last content
   .card {
     outline: 3px solid rgb(241, 240, 240);
     border-radius: 50%;
@@ -149,12 +157,28 @@ export default {
     }
   }
 }
-
+.pagination {
+  margin-top: 3rem;
+  padding-bottom: 6rem;
+  .paginator {
+    display: flex;
+    justify-content: center;
+    .page-tab {
+      cursor: pointer;
+      width: 100%;
+      color: $color_dark_blue;
+      width: 2rem;
+      height: 2rem;
+      text-align: center;
+      margin-left: 5px;
+      margin-right: 5px;
+      outline: 1px solid $color_dark_blue;
+      border-radius: 3px;
+    }
+  }
+}
 // ------ Medium Screen ------
 @media screen and (min-width: 700px) {
-  .home {
-    padding-bottom: 6rem;
-  }
   .explore-card {
     padding-top: 3rem;
     display: flex;
@@ -162,7 +186,6 @@ export default {
     justify-content: center;
     align-items: flex-start;
     gap: 2rem;
-    padding-bottom: 0; // change it back when full screen
   }
 }
 // ------ Large Screen ------
@@ -179,7 +202,9 @@ export default {
     justify-content: center;
     align-items: center;
     gap: 3rem;
-    padding-bottom: 0; // change it back when full screen
+  }
+  .pagination {
+    margin-top: 4rem;
   }
 }
 </style>

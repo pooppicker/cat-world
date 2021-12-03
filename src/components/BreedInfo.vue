@@ -128,11 +128,12 @@ export default {
         };
         this.isProcessing = false;
       } catch (error) {
-        console.log(error.message);
+        console.log(error);
+        this.isProcessing = false;
       }
     },
     previousPage() {
-      this.$router.back();
+      this.$router.push("/");
     },
   },
 };
