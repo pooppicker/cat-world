@@ -4,7 +4,7 @@
     <div v-else class="modal-container">
       <div class="modal">
         <div class="breed-header">
-          <div @click="previousPage" class="icon-back">
+          <div @click.stop.prevent="previousPage" class="icon-back">
             <img
               src="https://img.icons8.com/material-outlined/48/000000/long-arrow-left.png"
             />
@@ -133,7 +133,8 @@ export default {
       }
     },
     previousPage() {
-      this.$router.back();
+      console.log(this.$router);
+      this.$router.go(-1);
     },
   },
 };

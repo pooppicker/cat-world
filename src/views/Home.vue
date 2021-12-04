@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <Navbar :page="page" />
     <div class="search-bar">
       <form class="search">
         <label for="search-input"></label>
@@ -23,7 +24,7 @@
     </div>
     <Spinner v-if="isProcessing" />
     <!-- Home/Explore Page content -->
-    <div class="explore-card">
+    <div v-else class="explore-card">
       <div v-for="breed in breeds" :key="breed.id" class="card">
         <div class="card-container">
           <router-link :to="{ name: 'breed-info', params: { id: breed.id } }">
@@ -37,22 +38,34 @@
     <!-- Paginator -->
     <div class="pagination">
       <ul class="paginator">
-        <li v-if="page > 1" @click="prevBtn" class="page-tab">&laquo;</li>
-        <template v-for="n in getNumPages">
-          <li :key="n.index" class="page-tab">{{ n }}</li>
-        </template>
-        <li @click="nextBtn" class="page-tab">&raquo;</li>
+        <router-link
+          v-model="page"
+          class="nav-link"
+          :to="{ name: 'breeds', params: { id: page } }"
+        >
+          <li v-if="page > 1" @click="prevBtn" class="page-tab">&laquo;</li>
+        </router-link>
+
+        <router-link
+          v-model="page"
+          class="nav-link"
+          :to="{ name: 'breeds', params: { id: page } }"
+        >
+          <li v-if="page <= 6" @click="nextBtn" class="page-tab">&raquo;</li>
+        </router-link>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
-import BreedsAPI from "../assets/apis/breeds";
+import Navbar from "../components/Navbar";
 import Spinner from "../components/Spinner.vue";
+import axios from "axios";
 export default {
   components: {
     Spinner,
+    Navbar,
   },
   data() {
     return {
@@ -63,30 +76,31 @@ export default {
       isProcessing: true,
       page: 1,
       limit: 10,
-      pagination_count: 0,
     };
   },
   created() {
-    this.fetchBreeds(this.limit, this.page);
+    this.fetchBreeds();
   },
   methods: {
-    async fetchBreeds(limit, page) {
+    async fetchBreeds() {
       try {
+        this.isProcessing = true;
+        axios.defaults.headers.common["x-api-key"] =
+          "5905330e-b817-403e-ae23-ff5a4809c66d";
         const IMG_URL = "https://cdn2.thecatapi.com/images/";
         const JPG = ".jpg";
-        limit = this.limit;
-        page = this.page - 1;
-        this.isProcessing = true;
-        const response = await BreedsAPI.getBreeds({ limit, page });
-        this.pagination_count = response.headers["pagination-count"];
+        let page = this.page - 1;
+        let response = await axios.get(
+          `https://api.thecatapi.com/v1/breeds?limit=${this.limit}&page=${page}`
+        );
+
         this.breeds = response.data.map((breed) => ({
           ...breed,
           name: breed.name,
           reference_image_id: IMG_URL + breed.reference_image_id + JPG,
         }));
-
         this.isProcessing = false;
-        console.log(this.breeds);
+        console.log(this.$route);
       } catch (error) {
         console.log(error);
         this.isProcessing = false;
@@ -101,23 +115,12 @@ export default {
       await this.fetchBreeds();
     },
   },
-  computed: {
-    getNumPages: function () {
-      return Math.floor(this.pagination_count / this.limit) | 0;
+  watch: {
+    page: function () {
+      this.fetchBreeds();
     },
+    deep: true,
   },
-  // watch: {
-  //   page: {
-  //     handler: function() {
-  //       if (this.page) {
-  //         limit= this.limit
-  //         page = this.page
-  //         this.fetchBreeds(limit, page)
-  //       }
-  //     },
-  //   },
-  //   deep: true,
-  // },
 };
 </script>
 

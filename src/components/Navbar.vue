@@ -1,14 +1,14 @@
 <template>
   <div class="navbars">
     <div class="header">
-      <router-link to="/">
+      <router-link to="/breeds/1">
         <h1 class="header-title">KitCat</h1>
       </router-link>
     </div>
     <nav class="nav">
       <ul class="nav-list">
         <li class="nav-item">
-          <router-link class="nav-link" to="/">
+          <router-link class="nav-link" :to="{ name: 'breeds' }">
             <img
               class="nav-icon"
               src="https://img.icons8.com/material-outlined/50/19647e/home--v2.png"
@@ -38,6 +38,20 @@
     </nav>
   </div>
 </template>
+
+//
+<script>
+// export default{
+//   props: {
+//     page: {
+//       type: Number,
+//       required: true
+//     }
+
+//   }
+// }
+//
+</script>
 
 <style lang="scss">
 @import "../assets/scss/colorAndSize.scss";
