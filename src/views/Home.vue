@@ -1,6 +1,13 @@
 <template>
   <div class="home">
     <Navbar />
+    <div class="scroll-top">
+      <img
+        @click="handleScrollTop"
+        class="arrow-up"
+        src="https://img.icons8.com/material-outlined/96/92bfb1/up.png"
+      />
+    </div>
     <div class="search-bar">
       <form class="search">
         <label for="search-input"></label>
@@ -41,6 +48,7 @@
 import Navbar from "../components/Navbar";
 import Spinner from "../components/Spinner.vue";
 import BreedAPI from "../assets/apis/breeds";
+
 export default {
   components: {
     Spinner,
@@ -78,6 +86,12 @@ export default {
         this.isProcessing = false;
       }
     },
+    handleScrollTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    },
   },
 };
 </script>
@@ -87,7 +101,23 @@ export default {
 .home {
   height: 100%;
   width: 100%;
+  padding-bottom: 6rem;
+  position: relative;
+  .scroll-top {
+    z-index: 999;
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    .arrow-up {
+      width: 35px;
+      height: 35px;
+      border-radius: 5px;
+      border: 2px solid #92bfb1;
+      cursor: pointer;
+    }
+  }
 }
+
 // ------ Main ------
 .search-bar {
   padding-top: 6rem;
@@ -158,26 +188,7 @@ export default {
     }
   }
 }
-.pagination {
-  margin-top: 3rem;
-  padding-bottom: 6rem;
-  .paginator {
-    display: flex;
-    justify-content: center;
-    .page-tab {
-      cursor: pointer;
-      width: 100%;
-      color: $color_dark_blue;
-      width: 2rem;
-      height: 2rem;
-      text-align: center;
-      margin-left: 5px;
-      margin-right: 5px;
-      outline: 1px solid $color_dark_blue;
-      border-radius: 3px;
-    }
-  }
-}
+
 // ------ Medium Screen ------
 @media screen and (min-width: 700px) {
   .explore-card {
@@ -203,9 +214,6 @@ export default {
     justify-content: center;
     align-items: center;
     gap: 3rem;
-  }
-  .pagination {
-    margin-top: 4rem;
   }
 }
 </style>

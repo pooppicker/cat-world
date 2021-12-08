@@ -39,20 +39,6 @@
   </div>
 </template>
 
-//
-<script>
-// export default{
-//   props: {
-//     page: {
-//       type: Number,
-//       required: true
-//     }
-
-//   }
-// }
-//
-</script>
-
 <style lang="scss">
 @import "../assets/scss/colorAndSize.scss";
 
