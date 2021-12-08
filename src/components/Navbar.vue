@@ -1,7 +1,7 @@
 <template>
   <div class="navbars">
     <div class="header">
-      <router-link to="/breeds/1">
+      <router-link to="/breeds">
         <h1 class="header-title">KitCat</h1>
       </router-link>
     </div>

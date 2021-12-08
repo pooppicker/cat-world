@@ -6,14 +6,14 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/breeds/:id",
+    path: "/breeds",
     name: "breeds",
     component: Home,
   },
   {
-    path: "/breed-info/:id",
-    name: "breed-info",
-    component: () => import("../components/BreedInfo.vue"),
+    path: "/breeds/:id",
+    name: "breed",
+    component: () => import("../components/Breed.vue"),
   },
   {
     path: "/favorite",

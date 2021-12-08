@@ -94,13 +94,23 @@ export default {
   created() {
     const { id } = this.$route.params;
     this.fetchBreed(id);
+    console.log(this.breed);
   },
   methods: {
     async fetchBreed(breedId) {
       const IMG_URL = "https://cdn2.thecatapi.com/images/";
       const JPG = ".jpg";
       try {
+        // const { data } = await BreedsAPI.getBreed({ breedId });
+        // if (data.status !== "success") {
+        //   throw new Error(data.message);
+        // }
+        // this.breed = {
+        //   ...this.restaurant,
+        // };
+        // console.log(this.breed);
         const response = await BreedsAPI.getBreed({ breedId });
+        console.log(response.data);
         const {
           id,
           name,
@@ -126,6 +136,7 @@ export default {
           wikipedia_url,
           reference_image_id: IMG_URL + reference_image_id + JPG,
         };
+        console.log(this.breed);
         this.isProcessing = false;
       } catch (error) {
         console.log(error);
@@ -134,7 +145,7 @@ export default {
     },
     previousPage() {
       console.log(this.$router);
-      this.$router.go(-1);
+      this.$router.back();
     },
   },
 };
