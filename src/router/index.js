@@ -13,7 +13,7 @@ const routes = [
   {
     path: "/breeds/:id",
     name: "breed",
-    component: () => import("../components/Breed.vue"),
+    component: () => import("../views/Breed.vue"),
   },
   {
     path: "/favorite",

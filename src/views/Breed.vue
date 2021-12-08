@@ -69,7 +69,7 @@
 
 <script>
 import BreedsAPI from "../assets/apis/breeds";
-import Spinner from "./Spinner.vue";
+import Spinner from "../components/Spinner.vue";
 export default {
   components: {
     Spinner,
