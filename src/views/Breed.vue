@@ -52,7 +52,6 @@
 <script>
 import BreedsAPI from "../assets/apis/breeds";
 import Spinner from "../components/Spinner.vue";
-import axios from "axios";
 export default {
   components: {
     Spinner,
@@ -71,15 +70,12 @@ export default {
         wikipedia_url: "",
         reference_image_id: "",
       },
-      isFavorited: false,
       isProcessing: true,
     };
   },
   created() {
     const { id } = this.$route.params;
     this.fetchBreed(id);
-    axios.defaults.headers.common["x-api-key"] =
-      "5905330e-b817-403e-ae23-ff5a4809c66d";
   },
   methods: {
     async fetchBreed(breedId) {
@@ -120,32 +116,6 @@ export default {
         this.isProcessing = false;
       }
     },
-    async addFavorite(image_id) {
-      try {
-        const BASE_URL = "https://api.thecatapi.com/v1/favourites";
-
-        let post_body = {
-          image_id: image_id,
-          sub_id: "your-user-1234",
-        };
-        let response = await axios.post(BASE_URL, post_body);
-        this.isFavorited = true;
-        console.log(response);
-      } catch (error) {
-        console.log(error.data);
-      }
-    },
-    // async deleteFavorite(favourite_id) {
-    //   try {
-    //     const BASE_URL = 'https://api.thecatapi.com/v1/favourites'
-    //     let response = await axios.delete(BASE_URL+favourite_id)
-    //     this.isFavorited = false
-    //     this.favoriteId = response.data.id
-    //     console.log(this.favoriteId)
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // },
     previousPage() {
       this.$router.back();
     },

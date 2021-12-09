@@ -8,21 +8,21 @@
     <nav class="nav">
       <ul class="nav-list">
         <li class="nav-item">
-          <router-link class="nav-link" :to="{ name: 'breeds' }">
+          <router-link class="nav-link" to="/explore">
             <img
               class="nav-icon"
-              src="https://img.icons8.com/material-outlined/50/19647e/home--v2.png"
+              src="https://img.icons8.com/material-outlined/50/19647e/like.png"
             />
             <p>Explore</p>
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/favorite">
+          <router-link class="nav-link" :to="{ name: 'breeds' }">
             <img
               class="nav-icon"
-              src="https://img.icons8.com/material-outlined/50/19647e/like.png"
+              src="https://img.icons8.com/material-outlined/50/19647e/home--v2.png"
             />
-            <p>Favorites</p>
+            <p>Breeds</p>
           </router-link>
         </li>
         <li class="nav-item">
