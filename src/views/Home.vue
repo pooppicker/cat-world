@@ -13,6 +13,7 @@
         <label for="search-input"></label>
         <div class="search-container">
           <input
+            v-model="searchKeyword"
             type="text"
             name="search-input"
             id="search-input"
@@ -21,7 +22,12 @@
             maxlength="20"
             autofocus
           />
-          <button type="submit" class="btn btn-search">
+          <button
+            @click.prevent="handleSearch"
+            @keyup.enter="handleSearch"
+            type="submit"
+            class="btn btn-search"
+          >
             <img
               src="https://img.icons8.com/ios-filled/50/ee964b/search--v1.png"
             />
@@ -32,7 +38,7 @@
     <Spinner v-if="isProcessing" />
     <!-- Home/Explore Page content -->
     <div v-else class="explore-card">
-      <div v-for="breed in breeds" :key="breed.id" class="card">
+      <div v-for="breed in filterBreeds" :key="breed.id" class="card">
         <div class="card-container">
           <router-link :to="{ name: 'breed', params: { id: breed.id } }">
             <h4 class="card-title">{{ breed.name }}</h4>
@@ -60,6 +66,9 @@ export default {
         name: "",
         reference_image_id: "",
       },
+      // filterBreeds: [],
+      searchKeyword: "",
+      keywords: "",
       isProcessing: true,
     };
   },
@@ -80,17 +89,27 @@ export default {
         }));
 
         this.isProcessing = false;
-        console.log(response);
+        // console.log(response)
       } catch (error) {
-        console.log(error.handler);
+        console.log(error);
         this.isProcessing = false;
       }
+    },
+    handleSearch() {
+      this.keywords = this.searchKeyword.trim();
+      this.searchKeyword = "";
     },
     handleScrollTop() {
       window.scrollTo({
         top: 0,
         behavior: "smooth",
       });
+    },
+  },
+  computed: {
+    filterBreeds() {
+      const regex = new RegExp(this.keywords, "i");
+      return this.breeds.filter((breed) => breed.name.match(regex));
     },
   },
 };
