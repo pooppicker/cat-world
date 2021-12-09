@@ -22,7 +22,7 @@
               class="nav-icon"
               src="https://img.icons8.com/material-outlined/50/19647e/like.png"
             />
-            <p>Favorite</p>
+            <p>Favorites</p>
           </router-link>
         </li>
         <li class="nav-item">

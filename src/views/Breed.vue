@@ -17,32 +17,14 @@
           <h4 class="breed-title">{{ breed.name }}</h4>
         </div>
         <div class="breed-wrapper">
-          <img
-            class="breed-image"
-            :src="breed.reference_image_id"
-            alt="cannot load pic"
-          />
-
-          <div class="add-fav">
-            <button class="btn-like">
-              <div v-if="false">
-                <img
-                  src="https://img.icons8.com/material-outlined/48/000/like--v1.png"
-                />
-              </div>
-              <div v-else>
-                <img
-                  src="https://img.icons8.com/material-rounded/48/f02d3a/like--v1.png"
-                />
-              </div>
-            </button>
-            <a :href="breed.wikipedia_url" target="_blank"
-              ><img
-                class="icon-wiki"
-                src="https://img.icons8.com/ios/50/000000/wikipedia.png"
-            /></a>
-          </div>
-
+          <a :href="breed.wikipedia_url" target="_blank">
+            <img
+              class="breed-image"
+              :src="breed.reference_image_id"
+              :href="breed.wikipedia_url"
+              alt="wiki url"
+            />
+          </a>
           <div class="txt-area">
             <ul>
               <li><strong>Origin: </strong>{{ breed.origin }}</li>
@@ -53,7 +35,7 @@
                 >{{ breed.stranger_friendly }}
               </li>
               <li><strong>Temperament: </strong> {{ breed.temperament }}</li>
-              <li>
+              <li class="txt-description">
                 <strong>Description: </strong>
                 <p class="description">
                   {{ breed.description }}
@@ -70,6 +52,7 @@
 <script>
 import BreedsAPI from "../assets/apis/breeds";
 import Spinner from "../components/Spinner.vue";
+import axios from "axios";
 export default {
   components: {
     Spinner,
@@ -88,29 +71,23 @@ export default {
         wikipedia_url: "",
         reference_image_id: "",
       },
+      isFavorited: false,
       isProcessing: true,
     };
   },
   created() {
     const { id } = this.$route.params;
     this.fetchBreed(id);
-    console.log(this.breed);
+    axios.defaults.headers.common["x-api-key"] =
+      "5905330e-b817-403e-ae23-ff5a4809c66d";
   },
   methods: {
     async fetchBreed(breedId) {
       const IMG_URL = "https://cdn2.thecatapi.com/images/";
       const JPG = ".jpg";
       try {
-        // const { data } = await BreedsAPI.getBreed({ breedId });
-        // if (data.status !== "success") {
-        //   throw new Error(data.message);
-        // }
-        // this.breed = {
-        //   ...this.restaurant,
-        // };
-        // console.log(this.breed);
         const response = await BreedsAPI.getBreed({ breedId });
-        console.log(response.data);
+        // console.log(response.data);
         const {
           id,
           name,
@@ -136,15 +113,40 @@ export default {
           wikipedia_url,
           reference_image_id: IMG_URL + reference_image_id + JPG,
         };
-        console.log(this.breed);
+        console.log(reference_image_id);
         this.isProcessing = false;
       } catch (error) {
         console.log(error);
         this.isProcessing = false;
       }
     },
+    async addFavorite(image_id) {
+      try {
+        const BASE_URL = "https://api.thecatapi.com/v1/favourites";
+
+        let post_body = {
+          image_id: image_id,
+          sub_id: "your-user-1234",
+        };
+        let response = await axios.post(BASE_URL, post_body);
+        this.isFavorited = true;
+        console.log(response);
+      } catch (error) {
+        console.log(error.data);
+      }
+    },
+    // async deleteFavorite(favourite_id) {
+    //   try {
+    //     const BASE_URL = 'https://api.thecatapi.com/v1/favourites'
+    //     let response = await axios.delete(BASE_URL+favourite_id)
+    //     this.isFavorited = false
+    //     this.favoriteId = response.data.id
+    //     console.log(this.favoriteId)
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    // },
     previousPage() {
-      console.log(this.$router);
       this.$router.back();
     },
   },
@@ -160,7 +162,7 @@ export default {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.2);
   z-index: 9999;
 }
 .modal-container {
@@ -209,30 +211,16 @@ export default {
   flex-direction: column;
   align-items: center;
   .breed-image {
-    width: 300px;
-    max-height: 300px;
+    width: 100%;
     object-position: top;
     object-fit: cover;
   }
-  .add-fav {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-    height: 50px;
-    .btn-like {
-      img {
-        width: 30px;
-        height: 30px;
-      }
-    }
-    .icon-wiki {
-      width: 30px;
-      height: 30px;
-    }
-  }
   .txt-area {
-    display: none;
+    padding: 2rem;
+    line-height: 2;
+    .txt-description {
+      display: none;
+    }
   }
 }
 
@@ -256,6 +244,9 @@ export default {
       display: block;
       padding: 0 5.9rem 0 8rem;
       line-height: 2;
+      .txt-description {
+        display: block;
+      }
       li {
         font-size: 18px;
       }

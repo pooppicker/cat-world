@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <Navbar />
     <div class="scroll-top">
       <img
         @click="handleScrollTop"
@@ -51,14 +50,12 @@
 </template>
 
 <script>
-import Navbar from "../components/Navbar";
 import Spinner from "../components/Spinner.vue";
 import BreedAPI from "../assets/apis/breeds";
 
 export default {
   components: {
     Spinner,
-    Navbar,
   },
   data() {
     return {
@@ -66,7 +63,6 @@ export default {
         name: "",
         reference_image_id: "",
       },
-      // filterBreeds: [],
       searchKeyword: "",
       keywords: "",
       isProcessing: true,
