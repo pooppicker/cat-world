@@ -9,13 +9,16 @@
         <!-- Images -->
         <div v-for="n in images" :key="n.id" class="exp-card">
           <img class="cat-img" :src="n.url" alt="" />
-          <button @click="addFavorite(n.id)" class="add-fav" type="button">
+          <button
+            @click.stop.prevent="addFavorite(n.id)"
+            class="add-fav"
+            type="button"
+          >
             Favorite
           </button>
-          <!-- <button v-else @click="deleteFavorite(favorites.id)" class="remove-fav" type="button">Favorited</button> -->
         </div>
       </div>
-      <button @click="fetchImages" class="more-btn" type="button">
+      <button @click.stop.prevent="fetchImages" class="more-btn" type="button">
         More Kitties
       </button>
     </div>
@@ -27,6 +30,7 @@ import FavoriteAPI from "../assets/apis/favorite";
 import NavPills from "../components/NavPills.vue";
 import Spinner from "../components/Spinner.vue";
 import axios from "axios";
+import { Toast } from "../utils/helpers";
 export default {
   components: {
     NavPills,
@@ -36,9 +40,7 @@ export default {
     return {
       images: [],
       favorites: [],
-      isFavorite: false,
       isProcessing: false,
-      favoriteId: "",
     };
   },
   created() {
@@ -54,20 +56,25 @@ export default {
         let response = await FavoriteAPI.getImages();
         this.images = response.data;
         this.isProcessing = false;
-        console.log(this.images);
+        // console.log(this.images);
+        window.scrollTo({
+          top: 0,
+        });
       } catch (error) {
         console.log(error);
         this.isProcessing = false;
+        Toast.fire({
+          icon: "error",
+          title: "Cannot load images",
+        });
       }
     },
     async fetchFavorite() {
       try {
-        // let response = await FavoriteAPI.getFavorites();
         let response = await axios.get(
           "https://api.thecatapi.com/v1/favourites"
         );
         this.favorites = response.data;
-        console.log(this.favorites);
       } catch (error) {
         console.log(error);
       }
@@ -78,36 +85,25 @@ export default {
           image_id: image_id,
           sub_id: "your-user-1234",
         };
-        if (this.favorites.some((favorite) => favorite.image_id === image_id)) {
-          return alert("The image has been added to favorite");
-        }
         let response = await axios.post(
           "https://api.thecatapi.com/v1/favourites",
           post_body
         );
-        this.images = this.images.filter((image) => image.id !== image_id);
-        alert("Image added to My Favorite!");
+        this.images = this.images.filter((image) => image.id !== image_id); //按了加到最愛後消失
+        Toast.fire({
+          icon: "success",
+          title: "Image added to My Favorite!",
+        });
         this.favorites = response.data;
         this.fetchFavorite();
-
-        this.isFavorite = !this.isFavorite;
-
-        console.log(this.favorites);
       } catch (error) {
         console.log(error);
+        Toast.fire({
+          icon: "error",
+          title: "Cannot add image to My Favorite",
+        });
       }
     },
-    // async deleteFavorite(favourite_id) {
-    //   try {
-    //     let response = await axios.delete('https://api.thecatapi.com/v1/favourites/'+favourite_id )
-    //     this.favorites = response.data
-    //     this.fetchFavorite()
-    //     this.isFavorite = false
-    //     console.log(response.data);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // },
   },
 };
 </script>
