@@ -7,4 +7,7 @@ export default {
   getFavorites() {
     return apiHelper.get("/favourites");
   },
+  deleteFavorite({ favourite_id }) {
+    return apiHelper.delete(`/favourites/${favourite_id}`);
+  },
 };
