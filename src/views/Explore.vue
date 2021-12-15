@@ -110,9 +110,7 @@ export default {
 
 <style lang="scss">
 @import "../assets/scss/colorAndSize.scss";
-.explore {
-  outline: 1px solid black;
-}
+
 .exp-container {
   display: flex;
   flex-direction: column;
@@ -150,8 +148,7 @@ export default {
     object-fit: cover;
     border-radius: 5px;
   }
-  .add-fav,
-  .remove-fav {
+  .add-fav {
     margin: 1rem 1rem 1rem 0;
     width: 80px;
     height: 40px;
@@ -159,12 +156,7 @@ export default {
     color: white;
     font-size: 16px;
     box-shadow: 2px 2px 5px 1px rgb(192, 189, 189);
-  }
-  .add-fav {
     background: $color_dark_blue;
-  }
-  .remove-fav {
-    background: $color_orange;
   }
 }
 // Medium Screen
