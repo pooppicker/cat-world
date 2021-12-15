@@ -45,7 +45,6 @@ export default {
   },
   created() {
     this.fetchImages();
-    this.fetchFavorite();
     axios.defaults.headers.common["x-api-key"] =
       "5905330e-b817-403e-ae23-ff5a4809c66d";
   },
@@ -69,16 +68,6 @@ export default {
         });
       }
     },
-    async fetchFavorite() {
-      try {
-        let response = await axios.get(
-          "https://api.thecatapi.com/v1/favourites"
-        );
-        this.favorites = response.data;
-      } catch (error) {
-        console.log(error);
-      }
-    },
     async addFavorite(image_id) {
       try {
         let post_body = {
@@ -94,8 +83,7 @@ export default {
           icon: "success",
           title: "Image added to My Favorite!",
         });
-        this.favorites = response.data;
-        this.fetchFavorite();
+        console.log(response.data);
       } catch (error) {
         console.log(error);
         Toast.fire({
