@@ -26,12 +26,12 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/upload">
+          <router-link class="nav-link" to="/categories">
             <img
               class="nav-icon"
-              src="https://img.icons8.com/material-outlined/50/19647e/upload--v1.png"
+              src="https://img.icons8.com/metro/52/19647e/sorting-answers.png"
             />
-            <p>Upload</p>
+            <p>Categories</p>
           </router-link>
         </li>
       </ul>

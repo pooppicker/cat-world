@@ -26,9 +26,9 @@ const routes = [
     component: () => import("../views/Favorite.vue"),
   },
   {
-    path: "/upload",
-    name: "upload",
-    component: () => import("../views/Upload.vue"),
+    path: "/categories",
+    name: "categories",
+    component: () => import("../views/Categories.vue"),
   },
 ];
 
