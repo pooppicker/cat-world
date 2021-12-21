@@ -1,7 +1,6 @@
 <template>
   <div class="explore">
     <div class="exp-container">
-      <h4 class="kittie-title">Kitties</h4>
       <template v-if="isProcessing">
         <Spinner />
       </template>
@@ -105,11 +104,11 @@ export default {
   margin: 0 3rem;
   padding: 6rem 0;
   // outline: 1px solid black;
-  .kittie-title {
-    padding: 1rem;
-    font-size: 23px;
-    color: rgb(92, 89, 89);
-  }
+  // .kittie-title {
+  //   padding: .5rem;
+  //   font-size: 23px;
+  //   color: rgb(61, 61, 61);
+  // }
   .more-btn {
     margin: 1rem 1rem 1rem 0;
     width: 130px;
@@ -130,8 +129,8 @@ export default {
   justify-content: center;
   gap: 1rem;
   padding: 2rem 0;
-  border-top: 1px solid rgb(221, 220, 220);
-  border-bottom: 1px solid rgb(221, 220, 220);
+  // border-top: 1px solid rgb(221, 220, 220);
+  // border-bottom: 1px solid rgb(221, 220, 220);
   // outline: 1px solid black;
   .cat-img {
     width: 300px;

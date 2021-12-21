@@ -98,10 +98,10 @@ export default {
   align-items: center;
   margin: 0 3rem;
   padding: 6rem 0;
-  // outline: 1px solid black;
   .my-fav {
+    text-transform: uppercase;
     font-size: 20px;
-    color: rgb(92, 89, 89);
+    color: $color_light_blue;
   }
 }
 .fav-wrapper {
@@ -112,8 +112,6 @@ export default {
   justify-content: center;
   gap: 1rem;
   padding: 2rem 0;
-
-  // outline: 1px solid black;
 
   .cat-img {
     width: 300px;

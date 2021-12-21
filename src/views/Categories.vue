@@ -87,6 +87,9 @@ export default {
 
         this.images = response.data;
         this.isProcessing = false;
+        window.scrollTo({
+          top: 0,
+        });
         console.log(response);
       } catch (error) {
         console.log(error);
