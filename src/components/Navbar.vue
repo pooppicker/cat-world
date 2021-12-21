@@ -34,6 +34,15 @@
             <p>Categories</p>
           </router-link>
         </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/favorite">
+            <img
+              class="nav-icon"
+              src="https://img.icons8.com/material-outlined/96/19647e/like--v1.png"
+            />
+            <p>Favorite</p>
+          </router-link>
+        </li>
       </ul>
     </nav>
   </div>

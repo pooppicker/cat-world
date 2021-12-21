@@ -1,7 +1,7 @@
 <template>
   <div class="explore">
     <div class="exp-container">
-      <NavPills />
+      <h4 class="kittie-title">Kitties</h4>
       <template v-if="isProcessing">
         <Spinner />
       </template>
@@ -27,13 +27,11 @@
 
 <script>
 import FavoriteAPI from "../assets/apis/favorite";
-import NavPills from "../components/NavPills.vue";
 import Spinner from "../components/Spinner.vue";
 import axios from "axios";
 import { Toast } from "../utils/helpers";
 export default {
   components: {
-    NavPills,
     Spinner,
   },
   data() {
@@ -107,6 +105,11 @@ export default {
   margin: 0 3rem;
   padding: 6rem 0;
   // outline: 1px solid black;
+  .kittie-title {
+    padding: 1rem;
+    font-size: 23px;
+    color: rgb(92, 89, 89);
+  }
   .more-btn {
     margin: 1rem 1rem 1rem 0;
     width: 130px;

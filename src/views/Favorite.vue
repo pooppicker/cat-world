@@ -1,15 +1,11 @@
 <template>
   <div class="favorite">
     <div class="fav-container">
-      <NavPills />
+      <h4 class="my-fav">My Favorites</h4>
       <template v-if="isProcessing">
         <Spinner />
       </template>
-      <!-- No image -->
-      <template v-if="favorites.length === 0">
-        <span class="no-fav">Add Some photos to favorite!</span>
-      </template>
-      <div v-else class="album-wrapper">
+      <div v-else class="fav-wrapper">
         <!-- Images -->
         <div v-for="n in favorites" :key="n.id" class="exp-card">
           <img class="cat-img" :src="n.image.url" alt="" />
@@ -22,18 +18,20 @@
           </button>
         </div>
       </div>
+      <!-- No image -->
+      <template v-if="favorites.length < 1">
+        <span class="no-fav">Add Some photos to favorite!</span>
+      </template>
     </div>
   </div>
 </template>
 
 <script>
-import NavPills from "../components/NavPills.vue";
 import Spinner from "../components/Spinner.vue";
 import axios from "axios";
 import { Toast } from "../utils/helpers";
 export default {
   components: {
-    NavPills,
     Spinner,
   },
   data() {
@@ -65,6 +63,7 @@ export default {
           icon: "error",
           title: "Image cannot be loaded, please try again",
         });
+        this.isProcessing = false;
       }
     },
     async deleteFavorite(favourite_id) {
@@ -100,8 +99,12 @@ export default {
   margin: 0 3rem;
   padding: 6rem 0;
   // outline: 1px solid black;
+  .my-fav {
+    font-size: 20px;
+    color: rgb(92, 89, 89);
+  }
 }
-.album-wrapper {
+.fav-wrapper {
   width: 100%;
   height: 100%;
   display: flex;
@@ -109,8 +112,7 @@ export default {
   justify-content: center;
   gap: 1rem;
   padding: 2rem 0;
-  border-top: 1px solid rgb(221, 220, 220);
-  border-bottom: 1px solid rgb(221, 220, 220);
+
   // outline: 1px solid black;
 
   .cat-img {
