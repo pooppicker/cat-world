@@ -109,7 +109,7 @@
   }
 }
 // ------ Large Screen ------
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 780px) {
   .navbars {
     display: grid;
     grid-template-columns: 1fr auto minmax(300px, 3fr) 1fr;

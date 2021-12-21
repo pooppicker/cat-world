@@ -47,7 +47,7 @@ export default {
       selected_category: {},
       images: [],
       page: 1,
-      limit: 10,
+      limit: 15,
       include_categories: true,
       isProcessing: false,
     };
@@ -139,7 +139,10 @@ export default {
 
 <style lang="scss">
 @import "../assets/scss/colorAndSize.scss";
-
+.categories {
+  height: 100%;
+  width: 100%;
+}
 .categories-container {
   display: flex;
   flex-direction: column;
@@ -147,13 +150,6 @@ export default {
   .select-form {
     margin-top: 6rem;
     margin-bottom: 2rem;
-    // label {
-    //   display: block;
-    //   text-align: center;
-    //   padding: 1rem;
-    //   color: $color_dark_blue;
-    //   font-weight: 600;
-    // }
     select {
       border: none;
       border-bottom: 1px solid $color_light_blue;
@@ -175,6 +171,8 @@ export default {
       img {
         border-radius: 5px;
         width: 300px;
+        height: 300px;
+        object-fit: cover;
       }
       .add-fav {
         margin: 1rem 0 1rem 0;
@@ -202,20 +200,11 @@ export default {
 
 // Medium Screen
 @media screen and (min-width: 700px) {
-  // .categories-container {
-  //   display: flex;
-  // }
-  .cate-container {
+  .cate-photos {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1rem;
-  }
-}
-// Large Screen
-@media screen and (min-width: 820px) {
-  .cate-container {
     gap: 2rem;
   }
 }
