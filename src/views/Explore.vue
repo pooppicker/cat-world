@@ -99,16 +99,9 @@ export default {
 .exp-container {
   display: flex;
   flex-direction: column;
-  // justify-content: center;
   align-items: center;
   margin: 0 3rem;
   padding: 6rem 0;
-  // outline: 1px solid black;
-  // .kittie-title {
-  //   padding: .5rem;
-  //   font-size: 23px;
-  //   color: rgb(61, 61, 61);
-  // }
   .more-btn {
     margin: 1rem 1rem 1rem 0;
     width: 130px;
@@ -129,9 +122,6 @@ export default {
   justify-content: center;
   gap: 1rem;
   padding: 2rem 0;
-  // border-top: 1px solid rgb(221, 220, 220);
-  // border-bottom: 1px solid rgb(221, 220, 220);
-  // outline: 1px solid black;
   .cat-img {
     width: 300px;
     height: 300px;
@@ -147,6 +137,29 @@ export default {
     font-size: 16px;
     box-shadow: 2px 2px 5px 1px rgb(192, 189, 189);
     background: $color_dark_blue;
+    &:hover {
+      animation: shine 0.5s infinite;
+    }
+  }
+}
+@keyframes shine {
+  0% {
+    background-color: $color_yellow;
+  }
+  20% {
+    background-color: $color_dark_blue;
+  }
+  40% {
+    background-color: $color_light_blue;
+  }
+  60% {
+    background-color: $color_orange;
+  }
+  80% {
+    background-color: $color_yellow;
+  }
+  100% {
+    background-color: $color_light_blue;
   }
 }
 // Medium Screen
