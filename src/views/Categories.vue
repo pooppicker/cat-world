@@ -185,7 +185,10 @@ export default {
         color: white;
         font-size: 16px;
         box-shadow: 2px 2px 5px 1px rgb(192, 189, 189);
-        background: $color_dark_blue;
+        background: $color_yellow;
+        &:hover {
+          animation: strech 0.5s linear;
+        }
       }
     }
   }
@@ -200,7 +203,17 @@ export default {
   border-radius: 5px;
   box-shadow: 0px 3px 5px 1px rgb(192, 189, 189);
 }
-
+@keyframes strech {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 // Medium Screen
 @media screen and (min-width: 700px) {
   .cate-photos {

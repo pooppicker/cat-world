@@ -11,7 +11,7 @@
           <router-link class="nav-link" to="/explore">
             <img
               class="nav-icon"
-              src="https://img.icons8.com/material-outlined/50/19647e/like.png"
+              src="https://img.icons8.com/ios-glyphs/60/19647e/cat-bed.png"
             />
             <p>Explore</p>
           </router-link>
@@ -20,7 +20,7 @@
           <router-link class="nav-link" :to="{ name: 'breeds' }">
             <img
               class="nav-icon"
-              src="https://img.icons8.com/material-outlined/50/19647e/home--v2.png"
+              src="https://img.icons8.com/ios/100/19647e/scratching-post.png"
             />
             <p>Breeds</p>
           </router-link>
@@ -29,7 +29,7 @@
           <router-link class="nav-link" to="/categories">
             <img
               class="nav-icon"
-              src="https://img.icons8.com/metro/52/19647e/sorting-answers.png"
+              src="https://img.icons8.com/pastel-glyph/64/19647e/cat-footprint.png"
             />
             <p>Categories</p>
           </router-link>
@@ -38,7 +38,7 @@
           <router-link class="nav-link" to="/favorite">
             <img
               class="nav-icon"
-              src="https://img.icons8.com/material-outlined/96/19647e/like--v1.png"
+              src="https://img.icons8.com/pastel-glyph/64/19647e/cat-cage--v2.png"
             />
             <p>Favorite</p>
           </router-link>

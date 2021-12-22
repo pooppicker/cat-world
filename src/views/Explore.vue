@@ -136,30 +136,21 @@ export default {
     color: white;
     font-size: 16px;
     box-shadow: 2px 2px 5px 1px rgb(192, 189, 189);
-    background: $color_dark_blue;
+    background: $color_yellow;
     &:hover {
-      animation: shine 0.5s infinite;
+      animation: strech 0.5s linear;
     }
   }
 }
-@keyframes shine {
+@keyframes strech {
   0% {
-    background-color: $color_yellow;
+    transform: scale(1);
   }
-  20% {
-    background-color: $color_dark_blue;
-  }
-  40% {
-    background-color: $color_light_blue;
-  }
-  60% {
-    background-color: $color_orange;
-  }
-  80% {
-    background-color: $color_yellow;
+  50% {
+    transform: scale(1.2);
   }
   100% {
-    background-color: $color_light_blue;
+    transform: scale(1);
   }
 }
 // Medium Screen
