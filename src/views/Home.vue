@@ -85,7 +85,7 @@ export default {
         }));
 
         this.isProcessing = false;
-        // console.log(response)
+        // console.log(this.breeds.reference_image_id)
       } catch (error) {
         console.log(error);
         this.isProcessing = false;
