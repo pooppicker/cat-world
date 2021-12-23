@@ -52,7 +52,7 @@
 <script>
 import Spinner from "../components/Spinner.vue";
 import BreedAPI from "../assets/apis/breeds";
-
+import { Toast } from "../utils/helpers";
 export default {
   components: {
     Spinner,
@@ -106,6 +106,12 @@ export default {
     },
     handleSearch() {
       this.keywords = this.searchKeyword.trim();
+      if (!this.keywords) {
+        Toast.fire({
+          icon: "info",
+          title: `cannot find keyword: ${this.keywords}`,
+        });
+      }
       this.searchKeyword = "";
     },
     handleScrollTop() {

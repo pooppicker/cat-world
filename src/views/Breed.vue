@@ -123,7 +123,6 @@ export default {
   animation: scale-in 0.1s linear;
 }
 .breed-header {
-  // outline: 1px solid black;
   display: flex;
   align-items: center;
   padding: 1rem;
