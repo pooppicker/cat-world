@@ -134,7 +134,7 @@ export default {
   .scroll-top {
     z-index: 999;
     position: fixed;
-    bottom: 1rem;
+    bottom: 6rem;
     right: 1rem;
     .arrow-up {
       width: 35px;
@@ -178,7 +178,7 @@ export default {
 }
 .explore-card {
   // outline: 1px solid black;
-  margin-top: 1rem;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -230,6 +230,11 @@ export default {
 }
 // ------ Large Screen ------
 @media screen and (min-width: 820px) {
+  .home {
+    .scroll-top {
+      bottom: 1rem;
+    }
+  }
   .search-bar {
     .search-container {
       width: 420px;

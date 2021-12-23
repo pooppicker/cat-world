@@ -28,11 +28,11 @@
           <div class="txt-area">
             <ul>
               <li><strong>Origin: </strong>{{ breed.origin }}</li>
-              <li><strong>Life span: </strong>{{ breed.life_span }}</li>
+              <li><strong>Life span: </strong>{{ breed.life_span }} years</li>
               <li><strong>Short legs: </strong>{{ breed.short_legs }}</li>
               <li>
                 <strong>Stranger friendly: </strong
-                >{{ breed.stranger_friendly }}
+                >{{ breed.stranger_friendly }} (out of 5 stars)
               </li>
               <li><strong>Temperament: </strong> {{ breed.temperament }}</li>
               <li class="txt-description">
@@ -59,15 +59,7 @@ export default {
   data() {
     return {
       breed: {
-        id: "",
-        name: "",
-        origin: "",
-        life_span: "",
         short_legs: 0,
-        stranger_friendly: 1,
-        temperament: "",
-        description: "",
-        wikipedia_url: "",
         reference_image_id: "",
       },
       isProcessing: true,
@@ -83,33 +75,13 @@ export default {
       const JPG = ".jpg";
       try {
         const response = await BreedsAPI.getBreed({ breedId });
-        // console.log(response.data);
-        const {
-          id,
-          name,
-          origin,
-          life_span,
-          short_legs,
-          stranger_friendly,
-          temperament,
-          description,
-          wikipedia_url,
-          reference_image_id,
-        } = response.data;
+        const { short_legs, reference_image_id } = response.data;
         this.breed = {
           ...response.data,
-          id,
-          name,
-          origin,
-          life_span,
           short_legs: short_legs === 0 ? "No" : "Yes",
-          stranger_friendly,
-          temperament,
-          description,
-          wikipedia_url,
           reference_image_id: IMG_URL + reference_image_id + JPG,
         };
-        console.log(reference_image_id);
+        console.log(this.breed);
         this.isProcessing = false;
       } catch (error) {
         console.log(error);
