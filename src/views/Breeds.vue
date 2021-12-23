@@ -4,7 +4,7 @@
       <img
         @click="handleScrollTop"
         class="arrow-up"
-        src="https://img.icons8.com/material-outlined/96/92bfb1/up.png"
+        src="https://img.icons8.com/material-outlined/96/19647e/up.png"
       />
     </div>
     <div class="search-bar">
@@ -41,7 +41,7 @@
         <div class="card-container">
           <router-link :to="{ name: 'breed', params: { id: breed.id } }">
             <h4 class="card-title">{{ breed.name }}</h4>
-            <img class="card-image" :src="breed.reference_image_id" alt="" />
+            <img class="card-image" :src="breed.image.url" alt="" />
           </router-link>
         </div>
       </div>
@@ -59,10 +59,7 @@ export default {
   },
   data() {
     return {
-      breeds: {
-        name: "",
-        reference_image_id: "",
-      },
+      breeds: {},
       searchKeyword: "",
       keywords: "",
       isProcessing: true,
@@ -75,17 +72,33 @@ export default {
     async fetchBreeds() {
       try {
         this.isProcessing = true;
-        const IMG_URL = "https://cdn2.thecatapi.com/images/";
-        const JPG = ".jpg";
-        let response = await BreedAPI.getBreeds();
-        this.breeds = response.data.map((breed) => ({
-          ...breed,
-          name: breed.name,
-          reference_image_id: IMG_URL + breed.reference_image_id + JPG,
-        }));
 
+        let response = await BreedAPI.getBreeds();
+        this.breeds = response.data;
+
+        // removed the data that cannot show image
+        for (let i = 0; i < this.breeds.length; i++) {
+          if (this.breeds[i].name === "Bengal") {
+            this.breeds.splice(i, 1);
+          }
+          if (this.breeds[i].name === "Devon Rex") {
+            this.breeds.splice(i, 1);
+          }
+          if (this.breeds[i].name === "European Burmese") {
+            this.breeds.splice(i, 1);
+          }
+          if (this.breeds[i].name === "Korat") {
+            this.breeds.splice(i, 1);
+          }
+          if (this.breeds[i].name === "Malayan") {
+            this.breeds.splice(i, 1);
+          }
+          if (this.breeds[i].name === "Persian") {
+            this.breeds.splice(i, 1);
+          }
+        }
         this.isProcessing = false;
-        // console.log(this.breeds.reference_image_id)
+        console.log(this.breeds);
       } catch (error) {
         console.log(error);
         this.isProcessing = false;
@@ -121,13 +134,13 @@ export default {
   .scroll-top {
     z-index: 999;
     position: fixed;
-    bottom: 100px;
-    right: 20px;
+    bottom: 1rem;
+    right: 1rem;
     .arrow-up {
       width: 35px;
       height: 35px;
       border-radius: 5px;
-      border: 2px solid #92bfb1;
+      border: 2px solid $color_dark_blue;
       cursor: pointer;
     }
   }
@@ -186,8 +199,8 @@ export default {
       height: 250px;
       cursor: pointer;
       .card-image {
-        width: 250px;
-        height: 250px;
+        width: 255px;
+        height: 255px;
         object-fit: cover;
       }
       .card-title {
