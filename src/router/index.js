@@ -1,19 +1,24 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import Explore from "../views/Explore.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
+    path: "/",
+    name: "",
+    redirect: "/explore",
+  },
+  {
     path: "/explore",
     name: "explore",
-    component: () => import("../views/Explore.vue"),
+    component: Explore,
   },
   {
     path: "/breeds",
     name: "breeds",
-    component: Home,
+    component: () => import("../views/Breeds.vue"),
   },
   {
     path: "/breeds/:id",
