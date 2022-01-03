@@ -1,30 +1,22 @@
 <template>
-  <div class="modal-overlay">
+  <div class="breed">
     <Spinner v-if="isProcessing" />
-    <div v-else class="modal-container">
-      <div class="modal">
+    <div v-else class="breed-container">
+      <div class="breed-top">
         <div class="breed-header">
-          <div @click.stop.prevent="previousPage" class="icon-back">
-            <img
-              src="https://img.icons8.com/material-outlined/48/000000/long-arrow-left.png"
-            />
-          </div>
-          <img
-            class="breed-header-image"
-            :src="breed.reference_image_id"
-            alt=""
-          />
           <h4 class="breed-title">{{ breed.name }}</h4>
         </div>
         <div class="breed-wrapper">
-          <a :href="breed.wikipedia_url" target="_blank">
-            <img
-              class="breed-image"
-              :src="breed.reference_image_id"
-              :href="breed.wikipedia_url"
-              alt="wiki url"
-            />
-          </a>
+          <div class="img-container">
+            <a :href="breed.wikipedia_url" target="_blank">
+              <img
+                class="breed-image"
+                :src="breed.reference_image_id"
+                :href="breed.wikipedia_url"
+                alt="wiki url"
+              />
+            </a>
+          </div>
           <div class="txt-area">
             <ul>
               <li><strong>Origin: </strong>{{ breed.origin }}</li>
@@ -43,6 +35,13 @@
               </li>
             </ul>
           </div>
+        </div>
+        <div @click.stop.prevent="previousPage" class="icon-back">
+          <img
+            class="left-arrow"
+            src="https://img.icons8.com/material-outlined/48/92bfb1/long-arrow-left.png"
+          />
+          <span>back</span>
         </div>
       </div>
     </div>
@@ -97,51 +96,16 @@ export default {
 
 <style lang="scss">
 @import "../assets/scss/colorAndSize.scss";
-
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.2);
-  z-index: 9999;
-}
-.modal-container {
-  position: relative;
-  display: grid;
-  place-items: center center;
-  width: 100%;
-  height: 100%;
-  overflow: scroll;
-}
-.modal {
-  padding: 14px 0;
-  background-color: #fff;
-  border-radius: 14px;
-  width: 400px;
-  animation: scale-in 0.1s linear;
+.breed-top {
+  padding-bottom: 6rem;
 }
 .breed-header {
   display: flex;
   align-items: center;
   padding: 1rem;
-  .breed-header-image {
-    object-fit: cover;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    outline: 3px solid rgb(228, 225, 225);
-  }
+  padding-top: 5rem;
   .breed-title {
-    padding-left: 1rem;
     font-weight: 500;
-  }
-  .icon-back {
-    width: 25px;
-    height: 25px;
-    margin-right: 1rem;
-    cursor: pointer;
   }
 }
 
@@ -159,35 +123,61 @@ export default {
   .txt-area {
     padding: 2rem;
     line-height: 2;
-    .txt-description {
-      display: none;
-    }
+  }
+}
+.icon-back {
+  width: 100%;
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  img {
+    width: 20px;
+    height: 20px;
+  }
+  span {
+    color: $color_light_blue;
+    padding-left: 0.5rem;
   }
 }
 
 // Medium Size
-
 @media Screen and (min-width: 600px) {
-  .modal {
-    width: 600px;
+  .breed-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .icon-back {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin-left: 0;
+    }
   }
   .breed-header {
-    padding-left: 5.5rem;
+    font-size: 18px;
   }
   .breed-wrapper {
     display: flex;
     flex-flow: column wrap;
     align-items: center;
-    .breed-image {
-      width: 350px;
+    justify-content: center;
+    .img-container {
+      width: 100%;
+      display: contents;
+      .breed-image {
+        max-width: 500px;
+      }
     }
     .txt-area {
-      display: block;
-      padding: 0 5.9rem 0 8rem;
+      max-width: 500px;
       line-height: 2;
-      .txt-description {
-        display: block;
-      }
+      padding: 0;
+      margin: 1rem 0;
       li {
         font-size: 18px;
       }
@@ -196,30 +186,25 @@ export default {
 }
 // Large Sreen
 @media Screen and (min-width: 820px) {
-  .modal {
-    width: 800px;
+  .breed-top {
+    display: flex;
+    align-items: center;
+    .icon-back {
+      margin-top: 1rem;
+      margin-right: 1rem;
+    }
   }
   .breed-header {
-    padding-left: 7rem;
+    font-size: 20px;
   }
   .breed-wrapper {
     .breed-image {
-      width: 500px;
-    }
-    .add-fav {
-      justify-content: space-evenly;
+      width: 600px;
     }
     .txt-area {
-      padding: 0 7rem 0 9.5rem;
+      padding: 0;
+      padding-top: 1rem;
     }
-  }
-}
-@keyframes scale-in {
-  from {
-    transform: scale(0.9);
-  }
-  to {
-    transform: scale(1);
   }
 }
 </style>
